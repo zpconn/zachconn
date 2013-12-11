@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+	<!--[if IE 7]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>The K Combinator and Effectful Computations in Tcl</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/skeleton.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/syntax.css">
+	<link rel="stylesheet" href="../css/custom.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container" style="margin-top: 40px;">
+		<div class="three columns sidebar">
+			<nav>
+				<a href="../" style="text-decoration: none;"><h3 id="logo">Zach Conn</h3></a>
+				<ul>
+					<li><a href="../">Index</a></li>
+					<li><a href="../archive.html">Archive</a></li>
+					<li><a href="../resume.html">Résumé</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="../contact.html">Contact</a></li>
+					<li><a href="../colophon.html">Colophon</a></li>
+				</ul>
+			</nav>
+			 
+		</div>
+		<div class="twelve columns offset-by-one content">
+			<h3>The K Combinator and Effectful Computations in Tcl</h3>
+
+	<p>Posted June 17, 2013.</p>
+
+
+<p>The K combinator, introduced by Donal Fellows, can be defined by the following simple procedure in Tcl:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> K <span class="kw">{</span>a b<span class="kw">}</span> <span class="kw">{</span> <span class="kw">set</span> a <span class="kw">}</span></code></pre>
+<p>So it just returns the value of its first argument and ignores the second argument. Of what use could this possibly be? The trick, so to speak, is that command substitution is still applied to the second argument.</p>
+<p>Before illustrating the use of this with examples, I’m going to use a slightly more general form:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> K <span class="kw">{</span>a <span class="ot">args</span><span class="kw">}</span> <span class="kw">{</span> <span class="kw">set</span> a <span class="kw">}</span></code></pre>
+<p>Remember that <code>args</code> in Tcl has a special meaning: it denotes a list containing all remaining arguments. So this is the K combinator extended to arbitrarily many arguments. I’m going to still call this <code>K</code> because it is so useful. This extended K combinator just takes any number of arguments (at least one) and returns the value of the first argument.</p>
+<p>Now let’s dive into the examples. The combinator can be unintuitive at first and it can lead to code which is hard to understand for the uninitiated, so it may not be well-suited for production code. But if understood and appreciated it can provide some nicer forms for common Tcl idioms.</p>
+<p>Here’s a warm-up to get you used to thinking about <code>K</code> and Tcl substitution. For instance, it can be used for a post-increment operator, which Tcl lacks:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl">K <span class="dt">$a</span> <span class="kw">[incr</span> a<span class="kw">]</span></code></pre>
+<p>returns the value of <code>a</code> and then increments the variable. This example should suggest that the second argument of <code>K</code> is often used for managing side-effects. Indeed, here we are performing one action (retrieving the value of the variable <code>a</code>) and we are introducing a side-effect of the computation (the variable <code>a</code> gets incremented at the end). You might even realize that the extended form of <code>K</code> which we are using allows us to attach an arbitrary number of side effects to any computation.</p>
+<p>For instance, the default <code>unset</code> command in Tcl just unsets a variable, but perhaps we also want to get the last value the variable had before being unset. We can define a new command to do this using <code>K</code>:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> <span class="kw">unset</span>! <span class="kw">{</span>varName<span class="kw">}</span> <span class="kw">{</span>
+	<span class="kw">upvar</span> <span class="dt">$varName</span> <span class="ot">x</span>
+	K <span class="kw">[set</span> <span class="ot">x</span><span class="kw">]</span> <span class="kw">[unset</span> <span class="ot">x</span><span class="kw">]</span>
+<span class="kw">}</span></code></pre>
+<p>Here we are defining <code>unset!</code> as <code>set</code> with <code>unset</code> as a side effect.</p>
+<p>Or we can define a procedure to clear the value of a variable and return to us the last value the variable had:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> <span class="ot">clear</span> <span class="kw">{</span>varName<span class="kw">}</span> <span class="kw">{</span> <span class="kw">upvar</span> <span class="dt">$varName</span> <span class="ot">x</span>; K <span class="kw">[set</span> <span class="ot">x</span><span class="kw">]</span> <span class="kw">[set</span> <span class="ot">x</span> <span class="kw">{}]</span> <span class="kw">}</span></code></pre>
+<p>Or we can swap two variables, say <code>a</code> and <code>b</code>, without any temporary variables:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">set</span> a <span class="kw">[</span>K <span class="dt">$b</span> <span class="kw">[set</span> b <span class="dt">$a</span><span class="kw">]]</span></code></pre>
+<p>These examples aren’t particularly useful or life-changing, but I hope they are training you to understand how <code>K</code> allows us to tag side effects onto ordinary command invocations in a condensed syntax. Let’s look at some more substantial and interesting examples which will use this knowledge.</p>
+<p>Suppose we have a stack, represented as a list in Tcl, and we want to implement the pop operation. Pop inspects the top-most value on the stack, returning its value to us, and it then deletes this element from the stack. With <code>K</code>, this sounds like a computation with a side effect:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> pop <span class="kw">{</span>stackName<span class="kw">}</span> <span class="kw">{</span>
+	<span class="kw">upvar</span> <span class="dt">$stackName</span> stack
+	K <span class="kw">[lindex</span> <span class="dt">$stack</span> end<span class="kw">]</span> <span class="kw">[set</span> stack <span class="kw">[lrange</span> <span class="dv">0</span> end<span class="dv">-1</span><span class="kw">]]</span>
+<span class="kw">}</span></code></pre>
+<p>What’s interesting here is we accomplished this operation with one less variable and one less command invocation compared to the standard approach:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> pop <span class="kw">{</span>stackName<span class="kw">}</span> <span class="kw">{</span>
+	<span class="kw">upvar</span> <span class="dt">$stackName</span> stack
+	<span class="kw">set</span> top <span class="kw">[lindex</span> <span class="dt">$stack</span> end<span class="kw">]</span>
+	<span class="kw">set</span> stack <span class="kw">[lrange</span> <span class="dv">0</span> end<span class="dv">-1</span><span class="kw">]</span>
+	<span class="kw">return</span> <span class="dt">$top</span>
+<span class="kw">}</span></code></pre>
+<p>We can also achieve an efficient implementation of lambda expressions in Tcl using <code>K</code>:</p>
+<pre class="sourceCode tcl"><code class="sourceCode tcl"><span class="kw">proc</span> lambda <span class="kw">{</span>arg <span class="ot">body</span><span class="kw">}</span> <span class="kw">{</span> K <span class="kw">[set</span> n <span class="kw">[info</span> <span class="dt">$body</span> <span class="dv">0</span><span class="kw">]]</span> <span class="kw">[proc</span> <span class="dt">$n</span> <span class="dt">$arg1</span> <span class="dt">$body</span><span class="kw">]</span> <span class="kw">}</span></code></pre>
+<p>Here the name of the lambda function created is the same as the command in which the lambda is invoked.</p>
+<p>In general, <code>K</code> allows one to tag side effects onto computations in such a way as to sometimes avoid extra allocations or command invocations. As such, it can be useful for optimizing mission-critical code or perhaps for just expressing a computation more cleanly.</p>
+<p>Do I recommend actually using it? Probably not. But it’s nice to understand it when you see it in other code (it pops up fairly often on the Tcl wiki).</p>
+
+		</div>
+	</div>
+</body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+	<!--[if IE 7]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Must-Know Algorithms (Part 1): Bloom Filters</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/skeleton.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/syntax.css">
+	<link rel="stylesheet" href="../css/custom.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container" style="margin-top: 40px;">
+		<div class="three columns sidebar">
+			<nav>
+				<a href="../" style="text-decoration: none;"><h3 id="logo">Zach Conn</h3></a>
+				<ul>
+					<li><a href="../">Index</a></li>
+					<li><a href="../archive.html">Archive</a></li>
+					<li><a href="../resume.html">Résumé</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="../contact.html">Contact</a></li>
+					<li><a href="../colophon.html">Colophon</a></li>
+				</ul>
+			</nav>
+			 
+		</div>
+		<div class="twelve columns offset-by-one content">
+			<h3>Must-Know Algorithms (Part 1): Bloom Filters</h3>
+
+	<p>Posted October 28, 2013.</p>
+
+
+<p>This is Part 1 of a series covering slightly obscure data structures and algorithms which I nevertheless believe every professional software engineer should know about. These algorithms are chosen both for their underlying elegance and simplicity but also for their practicality. You may not use them daily, but when you do they can be life-savers.</p>
+<p>In this first part, I will discuss an incredibly simple but powerful structure for approximately answering the question of set membership very quickly with minimal memory overhead. The structure, called a <strong><em>bloom filter</em></strong>, is little more than a glorified bit vector, and it guarantees no false negatives (i.e., if it tells you that an element is not in the set, then you can know for sure that the element is definitely not in the set). The trade-off is that it can produce false positives. A good use-case for a bloom filter, therefore, is a situation where you want a simple way to potentially rule out a much more expensive computation.</p>
+<p>Formally, a bloom filter is just a bit vector of length <code>m</code> together with a family of <code>k</code> indendent hash functions mapping elements of your set onto nonnegative integers strictly less than <code>m</code>. To construct the filter, simply loop over the set and, for each object, calculate the <code>k</code> independent hash indices and set the corresponding bits in the vector if they aren’t already set.</p>
+<p>To answer the question of set membership, given a candidate element, again compute its <code>k</code> hash indices. If every corresponding bit in the vector is set, then the element <strong><em>might</em></strong> be in the set. Otherwise, it’s <strong><em>definitely not</em></strong>. That’s it. This intimidatingly named structure is that simple. In constant time, with extremely limited space usage (<code>m</code> bits), we can answer the question of set membership with no false negatives. The values of <code>m</code> and <code>k</code> can be fine-tuned to minimize, within practical constraints, the probability of a false positive.</p>
+
+		</div>
+	</div>
+</body>
