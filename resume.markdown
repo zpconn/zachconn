@@ -7,24 +7,30 @@ title: Résumé
 *	**FlightAware**:
 	Software engineer. *June 2013 to present*.
 
-	- Designed and implemented a predictive model for inferring future airport capacity and individual flight delays based on inclement weather. 
+	- Implemented worldwide ADS-B coverage visualization using D3 involving spherical Delaunay triangulations and alpha shapes.
 
-	- Implemented, from back-end to front-end, a feature-rich commenting system for photos on the site using a combination of JavaScript, Tcl, and SQL (backed by PostgreSQL).
+	- Developed extensive web interface for visualizing ADS-B data contributed by a large worldwide network of hundreds of volunteers, including Coxcomb radial charts to show coverage distribution. This has led to hundreds of volunteers feeding data to FlightAware. Used flot and Raphael.js.
 
-	- Implemented an automated spam detector using artificial intelligence strategies such as naive Bayes classifiers. This generic system was written in Tcl and, thanks to its generic design, allowed us to automatically and intelligently filter spam from disparate commenting and discussion systems on the site.
+	- Developed framework for caching hourly flight delay statistics which are often quoted in the media (CBS, CNN, etc.), especially during holiday seasons.
 
-	- Implemented a linear partitioning algorithm in JavaScript to achieve an optimal photo layout a la Google Images and Flickr. Also added infinite scrolling to photo galleries with automatically updating URLs using HTML5's pushstate capabilities.
+	- Created a powerful web-based Tcl profiler which will automatically profile all function calls, thereby reconstructing the full call tree created during page generation. This tool is now used by all FlightAware developers and has led to optimizations that cut many critical page generation times in half.
 
-	- Helped develop framework for processing millions of ADS-B positions a day and collecting novel statistics to display to users. Developed a number of data visualizations so users can track their contributions and improve their reception.
+	- Implemented novel backtracking algorithm to deduce mapping tables for reversing airline callsign disambiguation. This is a critical component in maintaining the accuracy of flight tracking results on the website.
 
-	- Created a feature-rich game for crowdsourcing photo tagging.
+	- Developed machine learning algorithms for the prediction of future airport capacity based on past records of inclement weather.
 
-	- Developed framework for caching hourly flight delay statistics which are often quoted in the media, especially during holiday seasons.
+	- Designed and implemented a major revision of the photos interface (serving over half a million photos in total), including a new optimal jigsaw layout (a la Google Images and Flickr), infinite scrolling, and a feature-rich commenting system.
+
+	- Designed and implemented an intelligent site-wide spam filtering system based on conventional Bayesian classifiers (inspired by Paul Graham's "A Plan for Spam").
+
+	- Wrote an interpreter to convert dense TAF weather forecasts into friendly English-language hour-by-hour breakdowns. This allows the millions of users who can't read TAF reports to understand an airport's weather breakdown.
+
+	- Help mentor and lead summer development interns.
 
 *	**Rice University**:
 	Research intern. Studied metric and differential geometry in the context of classic complex analysis under Prof. Frank Jones. *Summer 2012*.
 
-*	**Rice University**: TA. Ran large help sessions for Frank Jones's Honor Multivariable Calculus sequence. *August 2011 to May 2012*.
+*	**Rice University**: TA. Ran large help sessions for Frank Jones's Honors Multivariable Calculus sequence. *August 2011 to May 2012*.
 
 *	**Cornell University**: Research intern. Developed new theory of de Rham cohomology on post-critically finite fractals under mentorship of Prof. Robert Strichartz; results published in *Communications in Pure and Applied Analysis*. *Summer 2011*.
 
