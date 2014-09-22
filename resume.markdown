@@ -2,30 +2,20 @@
 title: Résumé
 ---
 
+[(PDF version.)](https://www.dropbox.com/s/u530tv20au8v8ll/cv.pdf?dl=0)
+
 ### Work Experience
 
 *	**FlightAware**:
 	Software engineer. *June 2013 to present*.
 
-	- Implemented worldwide ADS-B coverage visualization using D3 involving spherical Delaunay triangulations and alpha shapes.
+	-	Lead developer of the core flight tracking decision engine, which is powered by proprietary artificial intelligence strategies. Report directly to the CTO.
 
-	- Developed extensive web interface for visualizing ADS-B data contributed by a large worldwide network of hundreds of volunteers, including Coxcomb radial charts to show coverage distribution. This has led to hundreds of volunteers feeding data to FlightAware. Used flot and Raphael.js.
+	-	Act in rotating role as release engineer: oversee and perform the daily production code push; review all code going into production; analyze new SQL queries; work with individual developers to avert problems; produce company-wide weekly development report.
 
-	- Developed framework for caching hourly flight delay statistics which are often quoted in the media (CBS, CNN, etc.), especially during holiday seasons.
+	-	Assist in hiring; represent the company at various career fairs, including the Rice Career Expo.
 
-	- Created a powerful web-based Tcl profiler which will automatically profile all function calls, thereby reconstructing the full call tree created during page generation. This tool is now used by all FlightAware developers and has led to optimizations that cut many critical page generation times in half.
-
-	- Implemented novel backtracking algorithm to deduce mapping tables for reversing airline callsign disambiguation. This is a critical component in maintaining the accuracy of flight tracking results on the website.
-
-	- Developed machine learning algorithms for the prediction of future airport capacity based on past records of inclement weather.
-
-	- Designed and implemented a major revision of the photos interface (serving over half a million photos in total), including a new optimal jigsaw layout (a la Google Images and Flickr), infinite scrolling, and a feature-rich commenting system.
-
-	- Designed and implemented an intelligent site-wide spam filtering system based on conventional Bayesian classifiers (inspired by Paul Graham's "A Plan for Spam").
-
-	- Wrote an interpreter to convert dense TAF weather forecasts into friendly English-language hour-by-hour breakdowns. This allows the millions of users who can't read TAF reports to understand an airport's weather breakdown.
-
-	- Help mentor and lead summer development interns.
+	-	Previously worked on a combination of back- and front-end projects, including many data visualizations using JavaScript, D3.js, Raphael.js. flot.js, and more.
 
 *	**Rice University**:
 	Research intern. Studied metric and differential geometry in the context of classic complex analysis under Prof. Frank Jones. *Summer 2012*.
@@ -77,9 +67,11 @@ title: Résumé
 
 *	[My GitHub gists.](http://gist.github.com/zpconn)
 
+*	[My Codewars profile.](http://www.codewars.com/users/zpconn)
+
 ### Languages
 
-*	Python, Ruby, C, C++, SQL, Haskell, Scheme, Tcl, JavaScript, LaTeX.
+*	Tcl, Python, C, C++, Haskell, Java.
 
 ### Likes
 
