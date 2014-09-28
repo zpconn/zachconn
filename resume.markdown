@@ -9,7 +9,7 @@ title: Résumé
 *	**FlightAware**:
 	Software engineer. *June 2013 to present*.
 
-	-	Lead developer of the core flight tracking decision engine, which is powered by proprietary artificial intelligence strategies. Report directly to the CTO.
+	-	Lead developer of the core flight tracking decision engine, which is powered by proprietary fuzzy logic strategies. Report directly to the CTO.
 
 	-	Act in rotating role as release engineer: oversee and perform the daily production code push; review all code going into production; analyze new SQL queries; work with individual developers to avert problems; produce company-wide weekly development report.
 
@@ -28,11 +28,19 @@ title: Résumé
 
 *	**The Idea Works, Inc.**: Intern. Developed semantic networks for the flagship product SAGrader, an online automated essay grading service powered by unique artificial intelligence strategies. Adapted the program for use in large introductory psychology courses at Park University; my work is still in use today. *November 2008 to December 2009*.
 
-### Publications
+### Publications and Presentations
 
 *	**Hodge-de Rham Theory on Fractal Graphs and Fractals** (*Communications in Pure and Applied Analysis*).
 
-	*Abstract*: We present a new approach to the theory of k-forms on self-similar fractals. We work out the details for two examples, the standard Sierpinski gasket and the 3-dimensional Sierpinski gasket, but the method is expected to be effective for many PCF fractals and also infinitely ramified fractals such as the Sierpinski carpet Our approach is to construct k-forms and de Rham differential operators d and delta for a sequence of graphs approximating the fractal and then to pass to the limit with suitable renormalization, in imitation of Kigami's approach to constructing Laplacians on functions. One of our results is that our Laplacian on 0-forms is equal to Kigami's Laplacian on functions. We give explicit construction of harmonic 1-forms for our examples. We also prove that the measures on line segments provided by 1-forms are not absolutely continuous with respect to Lebesgue measures.
+	- *Abstract*: We present a new approach to the theory of k-forms on self-similar fractals. We work out the details for two examples, the standard Sierpinski gasket and the 3-dimensional Sierpinski gasket, but the method is expected to be effective for many PCF fractals and also infinitely ramified fractals such as the Sierpinski carpet Our approach is to construct k-forms and de Rham differential operators d and delta for a sequence of graphs approximating the fractal and then to pass to the limit with suitable renormalization, in imitation of Kigami's approach to constructing Laplacians on functions. One of our results is that our Laplacian on 0-forms is equal to Kigami's Laplacian on functions. We give explicit construction of harmonic 1-forms for our examples. We also prove that the measures on line segments provided by 1-forms are not absolutely continuous with respect to Lebesgue measures.
+
+*	**MASS Fest Conference, Pennsylvania State University**, *11-12 August 2010*.
+
+	- "Periodic billiard orbits in convex polytopes" with Ray Navarete, Andre Kuney, and Nell Kroeger.
+
+*	**Rice University Undergraduate Research Symposium**, *16 April 2010*.
+
+	- "Calculating linking numbers in two-fold branched covers in S^3" with Drew Moore.
 
 ### Education
 
