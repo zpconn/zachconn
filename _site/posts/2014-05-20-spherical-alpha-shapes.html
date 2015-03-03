@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+	<!--[if IE 7]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Data Visualization: Spherical Alpha Shapes</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/skeleton.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/syntax.css">
+	<link rel="stylesheet" href="../css/custom.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container" style="margin-top: 40px;">
+		<div class="three columns sidebar">
+			<nav>
+				<a href="../" style="text-decoration: none;"><h3 id="logo">Zach Conn</h3></a>
+				<ul>
+					<li><a href="../">Index</a></li>
+					<li><a href="../archive.html">Archive</a></li>
+					<li><a href="../resume.html">Résumé</a></li>
+					<li><a href="../documents.html">Documents</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="../contact.html">Contact</a></li>
+					<li><a href="../colophon.html">Colophon</a></li>
+				</ul>
+			</nav>
+			 
+		</div>
+		<div class="twelve columns offset-by-one content">
+			<h3>Data Visualization: Spherical Alpha Shapes</h3>
+
+	<p>Posted May 20, 2014.</p>
+
+
+<p>Suppose you are given a set of points on a surface, say a flat sheet of paper or a sphere. Your goal is to find a bounding polygon with the following properties:</p>
+<ol style="list-style-type: decimal">
+<li>The vertices of your polygon are a subset of the original set of points.</li>
+<li>Every point is contained in the polygon.</li>
+<li>The polygon, in some sense, characterizes the “shape” formed by the points on the surface.</li>
+</ol>
+<p>Of course, it is the third condition that makes this problem interesting. There isn’t one way to define what a characteristic shape might look like, and even if you do decide on a rigorous definition this is the sort of problem that can lead you down the rabbit hole of increasingly obtuse computational geometry algorithms.</p>
+<p>A naive solution which still might be acceptable in some situations would be to simply find the convex hull. There are well-known ways of doing this pretty efficiently (in <code>O(N log(N))</code> time, for <code>N</code> points). But what if the points are uniformly distributed in a donut shape? A convex hull cannot detect the hole and therefore might be completely unsatisfactory depending on the application.</p>
+<p>What we need is a “concave hull.” Such a thing is not well-defined, though. Indeed, if we’re not careful, we might even accidentally include the minimal spanning tree in our set of possible hulls, as would happen if we sought a polygon of minimal area, for instance.</p>
+<p>Enter alpha shapes. For a given point set there corresponds a one-parameter family of bounding polygons. The parameter, α, which is a nonnegative real number, determines how “tight” the polygon is. Depending on the exact definition used, increasing or decreasing alpha causes the polygon to tend between two archetypes: the convex hull at one extreme and a spanning tree at the other.</p>
+<p>The formal definition of an alpha shape is quite interesting, but we’re not going to use it, because we don’t need it. For us it is sufficient to know that an alpha shape is always a subcomplex of the Delaunay triangulation of the convex hull of the set of points. If we know how to compute this triangulation, then we can find an alpha shape with only two extra steps:</p>
+<ol style="list-style-type: decimal">
+<li>Delete any triangles from the triangulation which are “too big,” a condition I define in the following very simple way. A triangle is “too big” if any of its edges is longer than α (some people, by convention, might prefer <code>1/α</code> here).</li>
+<li>What results is a triangulation of the alpha shape. We no longer need the interior geometry, so we merge the triangles to obtain just the bounding path.</li>
+</ol>
+<p>This is simple enough if our points reside in a plane. It gets even more interesting if our points are on a sphere (say the locations of all worldwide cities). In this case, we need the spherical Delaunay triangulation. A beautiful observation is that this is equivalent to the three-dimensional convex hull of the set of points in 3-space. With this in mind, the only other modification necessary is of course to use the spherical distance metric.</p>
+<p>The following example shows an implementation of alpha shapes using these ideas in sherical geometry using D3.js: <a href="http://bl.ocks.org/zpconn/11387143">http://bl.ocks.org/zpconn/11387143</a>. The final merge step is performed using TopoJSON.</p>
+
+		</div>
+	</div>
+</body>
