@@ -4,6 +4,24 @@ import           Data.Monoid (mappend)
 import           Hakyll
 
 --------------------------------------------------------------------------------
+pandocMathCompiler :: Compiler (Item String)
+pandocMathCompiler =
+	let mathExtensions    = [Ext_tex_math_dollars, Ext_tex_math_double_backslash, Ext_latex_macros]
+		defaultExtensions = writerExtensions defaultHakyllWriterOptions
+		newExtensions     = fold S.insert defaultExtensions mathExtensions
+		writerOptions     = defaultHakyllWriterOptions {
+							    writerExtensions     = newExtensions,
+							    writerHTMLMathMethod = MathJax ""
+						    }
+	in pandocCompilerWith defaultHakyllWriterOptions writerOptions
+
+--------------------------------------------------------------------------------
+postCtx :: Context String
+postCtx =
+    dateField "date" "%B %e, %Y" `mappend`
+    defaultContext
+
+--------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -16,13 +34,13 @@ main = hakyll $ do
 
     match (fromList ["about.markdown", "resume.markdown", "documents.markdown", "contact.markdown", "colophon.markdown"]) $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -57,9 +75,3 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateCompiler
 
-
---------------------------------------------------------------------------------
-postCtx :: Context String
-postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
