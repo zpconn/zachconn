@@ -8,7 +8,5 @@ Leaving academia behind, I'm now working as a software developer at [FlightAware
 
 [LinkedIn profile.](http://www.linkedin.com/pub/zach-conn/58/a76/3a3)
 
-[Stack Exchange Careers 2.0 profile.](http://careers.stackoverflow.com/cv/employer/180639)
-
 [Mathematics Stack Exchange profile.](http://math.stackexchange.com/users/251/zach-conn)
 
