@@ -2,7 +2,7 @@
 title: Generating closed plane curves with orbiting planetary systems
 ---
 
-There is a remarkable result in mathematics which says that given a sufficiently well-behaved closed curve in the plane one may assemble a system of orbiting planets such that the motion of the final planet precisely traces out the given curve. Here I'd like to briefly sketch both why this might be true and also suggest a method for numerically approximating the orbiting planetary system given a finite sequence of points on the curve.
+There is a remarkable result in mathematics which says that given a sufficiently well-behaved closed curve in the plane one may assemble a system of orbiting planets, each orbiting the previous planet in the sequence, such that the motion of the final planet precisely traces out the given curve. Even though this statement is equivalent to famous results in Fourier theory, it is very rarely appreciated in this highly geometric form. Here I'd like to briefly sketch both why this statement might be true and also suggest a method for numerically approximating the orbiting planetary system given a finite sequence of points on the curve.
 
 First, the key assumption here is that the orbits are perfectly circular. This is a clear departure from actual planetary orbits, which often are not even perfectly elliptical due to both the effects of different planets on each other but also general relativity (which leads to, e.g., the precession of Mercury's orbit).
 
@@ -31,3 +31,9 @@ Note that these coefficients are generally nonreal, but our geometric interpreta
 \\[r_n e^{2\\pi i n t} = a_n e^{2\\pi i n t} + b_ne^{i(2\\pi nt + \\pi/2)}.\\]
 
 Thus we obtain two orbits, one of which starts off at a shift of \\(\\pi/2\\) radians compared to the other. These orbiting planets can be arranged in either order thanks to the commutativity of addition.
+
+Alternatively, we can define the \\(n\\)th harmonic, for \\(n \\geq 0\\), via \\(h_0(t) = z_0\\) and
+
+\\[h_n(t) = r_n e^{2\\pi int} + r_{-n} e^{-2\\pi int}.\\]
+
+The curve is then a sum of harmonics, and each harmonic is not a circular orbit but an elliptical one with semi-major axis \\(\\left|r_n\\right| + \\left|r_{-n}\\right|\\).
