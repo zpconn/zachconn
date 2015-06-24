@@ -26,5 +26,8 @@ What if we only know some sample points on the curve, say \\(z_0,z_1,\\dots,z_{N
 
 \\[r_n = \\frac{1}{N}\\sum_{k=0}^{N-1} z_k e^{-2\\pi ink/N}.\\]
 
-What's most exciting is that this lends itself extremely well to computer simulation...
+Note that these coefficients are generally nonreal, but our geometric interpretation requires them to be real. We can resolve this issue by simply breaking each term \\(r_n e^{2\\pi i n t}\\) into two terms. Indeed, if \\(r_n = a_n + b_n i\\), then we simply write
 
+\\[r_n e^{2\\pi i n t} = a_n e^{2\\pi i n t} + b_ne^{i(2\\pi nt + \\pi/2)}.\\]
+
+Thus we obtain two orbits, one of which starts off at a shift of \\(\\pi/2\\) radians compared to the other. These orbiting planets can be arranged in either order thanks to the commutativity of addition.
