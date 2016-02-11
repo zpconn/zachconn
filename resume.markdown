@@ -11,7 +11,7 @@ title: Résumé
 
 	- Lead developer of the flight tracking team. Primary maintainer of the company's core flight tracking decision engine, which is powered by proprietary fuzzy logic strategies. Report directly to the CTO.
 
-	- Spearded the design and implementation of a major rearchitecture of the core flight tracking infrastructure from a serial processor into a highly performant distributed system, increasing the company's data processing capacity by a factor of 10x.
+	- Spearheaded the design and implementation of a major rearchitecture of the core flight tracking infrastructure from a serial processor into a highly performant distributed system, increasing the company's data processing capacity by a factor of 10x.
 
 	- Act in rotating role as release engineer: oversee and perform the daily production code push; review all code going into production; analyze new SQL queries; work with individual developers to avert problems; produce company-wide weekly development report.
 
