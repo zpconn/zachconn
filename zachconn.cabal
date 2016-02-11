@@ -1,0 +1,11 @@
+name: zachconn
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+
+executable zachconn
+    build-depends: hakyll -any, base -any, containers -any, pandoc -any
+    main-is: site.hs
+    buildable: True
+

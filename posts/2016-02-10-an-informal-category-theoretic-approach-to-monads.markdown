@@ -22,4 +22,3 @@ The other special operation, called *join*, is a bit more interesting. It takes 
 
 Anything that can be modeled this way -- be it a data structure, computation, API, or just a pattern of some sort -- is a monad. And that's really all there is to it. It turns out a whole lot of things can be modeled this way, so Haskell includes some syntactic sugar for working with this pattern (`do` notation).
 
-From here, further study of monads should focus just on seeing how existing monads in Haskell fit this pattern. The more you look at concrete examples, the more straightforward this construction will seem.
