@@ -1,19 +1,22 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
+import qualified Data.Set as S
+import Text.Pandoc.Options
 import           Hakyll
+import GHC.IO.Encoding
 
 --------------------------------------------------------------------------------
 pandocMathCompiler :: Compiler (Item String)
 pandocMathCompiler =
-	let mathExtensions    = [Ext_tex_math_dollars, Ext_tex_math_double_backslash, Ext_latex_macros]
-		defaultExtensions = writerExtensions defaultHakyllWriterOptions
-		newExtensions     = fold S.insert defaultExtensions mathExtensions
-		writerOptions     = defaultHakyllWriterOptions {
-							    writerExtensions     = newExtensions,
-							    writerHTMLMathMethod = MathJax ""
-						    }
-	in pandocCompilerWith defaultHakyllWriterOptions writerOptions
+    let mathExtensions = [Ext_tex_math_dollars, Ext_tex_math_double_backslash, Ext_latex_macros]
+        defaultExtensions = writerExtensions defaultHakyllWriterOptions
+        newExtensions = foldr S.insert defaultExtensions mathExtensions
+        writerOptions = defaultHakyllWriterOptions {
+        	writerExtensions = newExtensions,
+        	writerHTMLMathMethod = MathJax ""
+		}
+	in pandocCompilerWith defaultHakyllReaderOptions writerOptions
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
@@ -23,55 +26,60 @@ postCtx =
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
-    match "images/*" $ do
-        route   idRoute
-        compile copyFileCompiler
+main = do
+    setLocaleEncoding utf8
+    setFileSystemEncoding utf8
+    setForeignEncoding utf8
 
-    match "css/*" $ do
-        route   idRoute
-        compile compressCssCompiler
+    hakyll $ do
+		match "images/*" $ do
+			route   idRoute
+			compile copyFileCompiler
 
-    match (fromList ["about.markdown", "resume.markdown", "documents.markdown", "contact.markdown", "colophon.markdown"]) $ do
-        route   $ setExtension "html"
-        compile $ pandocMathCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
+		match "css/*" $ do
+			route   idRoute
+			compile compressCssCompiler
 
-    match "posts/*" $ do
-        route $ setExtension "html"
-        compile $ pandocMathCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
-            >>= relativizeUrls
+		match (fromList ["about.markdown", "resume.markdown", "documents.markdown", "contact.markdown", "colophon.markdown"]) $ do
+			route   $ setExtension "html"
+			compile $ pandocMathCompiler
+				>>= loadAndApplyTemplate "templates/default.html" defaultContext
+				>>= relativizeUrls
 
-    create ["archive.html"] $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    defaultContext
+		match "posts/*" $ do
+			route $ setExtension "html"
+			compile $ pandocMathCompiler
+				>>= loadAndApplyTemplate "templates/post.html"    postCtx
+				>>= loadAndApplyTemplate "templates/default.html" postCtx
+				>>= relativizeUrls
 
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
+		create ["archive.html"] $ do
+			route idRoute
+			compile $ do
+				posts <- recentFirst =<< loadAll "posts/*"
+				let archiveCtx =
+						listField "posts" postCtx (return posts) `mappend`
+						constField "title" "Archives"            `mappend`
+						defaultContext
 
-    match "index.html" $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
-                    defaultContext
+				makeItem ""
+					>>= loadAndApplyTemplate "templates/archive.html" archiveCtx
+					>>= loadAndApplyTemplate "templates/default.html" archiveCtx
+					>>= relativizeUrls
 
-            getResourceBody
-                >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
-                >>= relativizeUrls
+		match "index.html" $ do
+			route idRoute
+			compile $ do
+				posts <- recentFirst =<< loadAll "posts/*"
+				let indexCtx =
+						listField "posts" postCtx (return posts) `mappend`
+						constField "title" "Home"                `mappend`
+						defaultContext
 
-    match "templates/*" $ compile templateCompiler
+				getResourceBody
+					>>= applyAsTemplate indexCtx
+					>>= loadAndApplyTemplate "templates/default.html" indexCtx
+					>>= relativizeUrls
+
+		match "templates/*" $ compile templateCompiler
 
