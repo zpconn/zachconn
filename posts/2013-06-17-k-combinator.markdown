@@ -1,5 +1,5 @@
 ---
-title: The K Combinator and Effectful Computations in Tcl
+title: The K combinator and effectful computations in Tcl
 ---
 
 The K combinator, introduced by Donal Fellows, can be defined by the following simple procedure in Tcl:

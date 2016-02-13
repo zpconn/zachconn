@@ -1,5 +1,5 @@
 ---
-title: Electromagnetism as Curvature
+title: Electromagnetism as curvature
 ---
 
 One of the greatest and most shocking advances of physics occurred around 1916 when Einstein proposed his general theory of relativity. In this theory he proposed that gravity might not be action at a distance, as Newton supposed, but rather might result from massive bodies simply following "straight lines" in a curved space. This is rightfully viewed as one of the most beautiful insights of all time. Nobel laureate Max Born called it the "greatest feat of human thinking about nature."
