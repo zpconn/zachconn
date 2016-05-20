@@ -8,7 +8,7 @@ There are several core concepts in ```fiberbundle```:
 
 1. A ```fiber``` is a lightweight userspace green thread of execution. Fibers do not share state and communicate with each other via message passing. They are scheduled cooperatively and must explicitly yield to the event dispatcher. Fibers are implemented as coroutines behind the scenes.
 2. A ```bundle``` is a collection of fibers along with an associated cooperative scheduler.
-3. A ```bundle space``` is a controlling entity that creates Tcl threads, spawns bundles inside threads (typically in a one-to-one manner), and distributes new fibers across bundles and threads. The bundle space also acts as an intermediary for orchesting the communication between fibers located in different threads.
+3. A ```bundle space``` is a controlling entity that creates Tcl threads, spawns bundles inside threads (typically in a one-to-one manner), and distributes new fibers across bundles and threads. The bundle space also acts as an intermediary for orchestrating the communication between fibers located in different threads.
 
 The library provides a number of major features:
 
