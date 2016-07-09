@@ -52,7 +52,7 @@ This looks much cleaner, but there's a serious problem under the hood which may 
 So we can amend our definitions like so:
 
 ```haskell
-newtype Table a = Table (TVar (TTrie.Map Int a))
+newtype Table a = Table (TTrie.Map Int a)
 ...
 createNewTable :: STM (Table a)
 createNewTable = Table <$> TTrie.empty
@@ -61,7 +61,7 @@ createNewTable = Table <$> TTrie.empty
 Indexes can be modeled as inverted tables mapping indexed values to sets of row IDs:
 
 ```haskell
-newtype Index k = Index (TVar (TTrie.Map k (HashSet Int)))
+newtype Index k = Index (TTrie.Map k (HashSet Int))
 ```
 
 Queries of course must be implemented manually, but the general technique for simple queries is to perform several index lookups, yielding several sets of row IDs. The query result is then the intersection of these sets.
