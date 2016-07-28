@@ -7,17 +7,13 @@ title: Résumé
 ### Work Experience
 
 * **FlightAware**:
-	Software developer. *June 2013 to present*.
+	Lead software developer. *June 2013 to present*.
 
-	- Lead developer of the flight tracking team. Primary maintainer of the company's core flight tracking decision engine, which is powered by proprietary fuzzy logic strategies. Report directly to the CTO.
+	-  Direct management responsibility for the backend flight tracking team, which develops and maintains the company's core flight tracking decision engine. Drive the vision and implementation of the company's flight tracking technology while focusing on leading and growing the team.
 
 	- Spearheaded the design and implementation of a major rearchitecture of the core flight tracking infrastructure from a serial processor into a highly performant distributed system, increasing the company's data processing capacity by a factor of 10x.
 
 	- Act in rotating role as release engineer: oversee and perform the daily production code push; review all code going into production; analyze new SQL queries; work with individual developers to avert problems; produce company-wide weekly development report.
-
-	- Assist in hiring; represent the company at various career fairs, including the Rice Career Expo.
-
-	- Previously worked on a combination of back- and front-end projects, including many data visualizations using JavaScript, D3.js, Raphael.js. flot.js, and more.
 
 * **Rice University**:
 	Research intern. Studied metric and differential geometry in the context of classic complex analysis under Prof. Frank Jones. *Summer 2012*.
