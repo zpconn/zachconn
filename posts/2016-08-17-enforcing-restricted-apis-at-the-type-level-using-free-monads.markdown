@@ -8,7 +8,7 @@ For instance, it might be acceptable for a retryable action to read state from a
 
 There are several ways in Haskell to create such a read-only API yourself. The approach detailed here uses free monads to define a read-only DSL; effects in the DSL can then be interpreted into actions in the full monad and executed in `IO`. As an example, I'll create a limited read-only API to Redis, built on top of the `hedis` library.
 
-To begin with, we need to define the possible read-only actions available in our DSL. Before we do that, I should tell you that `hedis` functions use some clever type-level tricks in order to have "two possible types" depending on context. For instance, the ```get``` function returns a value of type either `Redis (Either Result ByteString)` or `Queued ByteString`. The former type is returned outside of transactions and the latter inside transactions (via `multiExec`). The ```Queued``` type is used to statically enforce that Redis query results cannot be used in the middle of a transaction but only after the entire transaction has been atomically processed.
+To begin with, we need to define the possible read-only actions available in our DSL. Before we do that, I should tell you that `hedis` functions use some clever type-level tricks in order to have "two possible types" depending on context. For instance, the ```get``` function returns a value of type either `Redis (Either Reply ByteString)` or `Queued ByteString`. The former type is returned outside of transactions and the latter inside transactions (via `multiExec`). The ```Queued``` type is used to statically enforce that Redis query results cannot be used in the middle of a transaction but only after the entire transaction has been atomically processed.
 
 As a simplification, we're only going to treat the former case, so our read-only API will only be usable outside of transactions. With that in mind, we can define the available read-only actions using an algebraic data type:
 
@@ -30,7 +30,7 @@ With this definition, constructing the monad itself is trivial using ```Free```:
 type ReadOnlyRedis = Free ReadOnlyRedisF
 ```
 
-We will leave the category-theoretic details of free monads for another time. Intuitively, a free object is one which has no structure beyond that implied directly by the axioms defining the object. In this case, a free monad has no interesting structure other than grafting monadic values together in the most trivial way possible while still satisfying the definition. Regardless of whether that really makes sense to you, using the result is easy.
+We will leave the category-theoretic details of free monads for another time. Intuitively, a free object is one which has no structure beyond that implied directly by the axioms defining the object. In this case, a free monad has no interesting structure other than grafting monadic values together in the most trivial way possible while still satisfying the definition. It lets us define a DSL which is, in and of itself, completely meaningless except insofar as it's a normalized specification of an abstract syntax tree. We must supply a separate interpreter to give meaning to computations in a free monad.
 
 We proceed by defining some helper functions to define actions directly in the ```ReadOnlyRedis``` monad:
 
