@@ -2,9 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import qualified Data.Set as S
-import Text.Pandoc.Options
+import           Text.Pandoc.Options
 import           Hakyll
-import GHC.IO.Encoding
+import           GHC.IO.Encoding
 
 --------------------------------------------------------------------------------
 pandocMathCompiler :: Compiler (Item String)
