@@ -26,7 +26,7 @@ title: Résumé
 
 * **The Idea Works, Inc.**: Intern. Developed semantic networks for the flagship product SAGrader, an online automated essay grading service powered by unique artificial intelligence strategies. Adapted the program for use in large introductory psychology courses at Park University; my work is still in use today. *November 2008 to December 2009*.
 
-### Publications and Presentations
+### Research
 
 * **Hodge-de Rham Theory on Fractal Graphs and Fractals** (*Communications in Pure and Applied Analysis*).
 
@@ -39,6 +39,12 @@ title: Résumé
 * **Rice University Undergraduate Research Symposium**, *16 April 2010*.
 
 	- "Calculating linking numbers in two-fold branched covers in S^3" with Drew Moore.
+
+### Conference Presentations
+
+* **23rd Annual Tcl/Tk Conference**, *17 November 2016*, *Houston, TX*.
+
+	- Presented my work on **hyperfeed**, the highly concurrent and parallelized flight tracking engine powering FlightAware.
 
 ### Education
 
