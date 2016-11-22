@@ -2,7 +2,7 @@
 title: Résumé
 ---
 
-[(PDF version.)](https://www.dropbox.com/s/u530tv20au8v8ll/cv.pdf?dl=0)
+[(PDF version.)](https://www.dropbox.com/s/dm0ylb5ivr5zkhx/cv.pdf?dl=0)
 
 ### Work Experience
 
