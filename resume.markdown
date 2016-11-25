@@ -44,7 +44,7 @@ title: Résumé
 
 * **23rd Annual Tcl/Tk Conference**, *17 November 2016*, *Houston, TX*.
 
-	- Presented my work on **hyperfeed**, the highly concurrent and parallelized flight tracking engine powering FlightAware.
+	- Presented my work on **hyperfeed**, the highly concurrent and parallelized flight tracking engine powering FlightAware. [(PDF version of preprint.)](https://www.dropbox.com/s/pxjld10b853sfk5/Hyperfeed.pdf?dl=0)
 
 ### Education
 
