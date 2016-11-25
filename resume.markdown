@@ -57,9 +57,11 @@ title: Résumé
 
 ### Awards and Honors
 
-* First place, computer programming event, Missouri State University Pummill Math Relays. *2005, 2006, 2007, 2008*.
+* First place, computer programming event, *Missouri State University Pummill Math Relays*. *2005, 2006, 2007, 2008*.
 
 	- The competition involved developing artificial intelligence for virtual robots which would fight each other in a simulated two-dimensional arena (using the Robocode platform). [Open-source GitHub repository](https://github.com/zpconn/RoboFuehrer) for one of my entries.
+
+* Top 20% score worldwide, *William Lowell Putnam Mathematical Competition*. *2009*.
 
 * Missouri Bright Flight Scholar (99th percentile ACT score).
 
