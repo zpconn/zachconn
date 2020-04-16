@@ -2,4 +2,4 @@
 title: Contact
 ---
 
-Email: zpconn at gmail dot com
+Email: zpconn at fastmail dot com

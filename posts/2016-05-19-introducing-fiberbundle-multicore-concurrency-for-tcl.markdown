@@ -1,5 +1,5 @@
 ---
-title: Introducing fiberbundle: multicore concurrency for Tcl
+title: 'Introducing fiberbundle: multicore concurrency for Tcl'
 ---
 
 Two of Tcl's greatest strengths are its integrated single-threaded event loop and its support for full coroutines. While the event loop is widely appreciated, coroutines perhaps are not. [fiberbundle](https://github.com/zpconn/fiberbundle) is a small, compact library that makes heavy use of both of these in order bring fiber-based Erlang-style multicore concurrency and parallelism to Tcl.

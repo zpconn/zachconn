@@ -1,5 +1,5 @@
 ---
-title: Data visualization: spherical alpha shapes
+title: 'Data visualization: spherical alpha shapes'
 ---
 
 Suppose you are given a set of points on a surface, say a flat sheet of paper or a sphere. Your goal is to find a bounding polygon with the following properties:

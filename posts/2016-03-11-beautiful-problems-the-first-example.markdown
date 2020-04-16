@@ -1,5 +1,5 @@
 ---
-title: Beautiful problems: the first example
+title: 'Beautiful problems: the first example'
 ---
 
 The following problem appeared on the 2016 Team Selection Test as part of the process of identifying the contestants who will represent the United States in the IMO (International Math Olympiad).

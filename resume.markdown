@@ -7,13 +7,17 @@ title: Résumé
 ### Work Experience
 
 * **FlightAware**:
-	Lead software developer. *June 2013 to present*.
+	Director of Engineering. *June 2013 to present*.
 
-	-  Direct management responsibility for the backend flight tracking team, which develops and maintains the company's core flight tracking decision engine. Drive the vision and implementation of the company's flight tracking technology while focusing on leading and growing the team.
+	- Founded and run the Aviation Insight organization with multiple fully staffed teams focusing on core flight tracking infrastructure, the quality of all flight and surface tracking results company-wide, and machine learning for predictive problems. Responsible for hiring, staff retention, people management, high-level architectural planning, fundamental research, and business leadership and vision.
 
-	- Spearheaded the design and implementation of a major rearchitecture of the core flight tracking infrastructure from a serial processor into a highly performant distributed system, increasing the company's data processing capacity by a factor of 10x.
+	- Accountable for the quality, performance, and reliability of all flight and surface tracking results.
 
-	- Act in rotating role as release engineer: oversee and perform the daily production code push; review all code going into production; analyze new SQL queries; work with individual developers to avert problems; produce company-wide weekly development report.
+	- Oversaw design and implementation of three generations of the core flight tracking decision engine, including the transition from a serial single-threaded processor to a highly performant distributed system. Personally responsible for a 10x increase in the company's flight data processing capacity.
+
+	- Pioneered the use of distributed machine learning and deep learning at FlightAware in particular and the aviation industry in general. Conceived, incubated, helped implement, and now oversee the [FlightAware Foresight](https://flightaware.com/commercial/foresight/) product suite.
+
+	- Oversaw design and implementation of multiple production machine learning systems for computing runway landing times, gate arrival times, and more. We train thousands of models on hundreds of thousands of CPU cores using hundreds of millions of historical examples per airport. These real-time estimates are now in operational use by the largest airports and airlines in the world and impact the majority of the US air traveling public.
 
 * **Rice University**:
 	Research intern. Studied metric and differential geometry in the context of classic complex analysis under Prof. Frank Jones. *Summer 2012*.
@@ -25,6 +29,10 @@ title: Résumé
 * **Pensylvania State University**: Research intern. Led the development and implementation in C of novel computer algorithms to determine the existence of omnihedral orbits in convex polytopes. *Summer 2010*.
 
 * **The Idea Works, Inc.**: Intern. Developed semantic networks for the flagship product SAGrader, an online automated essay grading service powered by unique artificial intelligence strategies. Adapted the program for use in large introductory psychology courses at Park University; my work is still in use today. *November 2008 to December 2009*.
+
+### Patents
+
+* [**"System and method for collecting airport ground positional data and transmitting notifications for ground-based aircraft and other vehicles"**](https://patents.justia.com/inventor/zachery-conn) Daniel Baker, Karl Lehenbauer, Caroline Rodewig, James Sulak, Mark Duell, Zachery Conn, Jeffrey Lawson. US patent 10,490,086 B1. *November 26, 2019*.
 
 ### Conference Presentations
 
@@ -75,18 +83,6 @@ title: Résumé
 
 * VIGRE grant at Rice University for Summer 2012.
 
-### Open Source Software
+### Trivia
 
-* [My GitHub profile.](http://github.com/zpconn)
-
-* [My GitHub gists.](http://gist.github.com/zpconn)
-
-* [My Codewars profile.](http://www.codewars.com/users/zpconn)
-
-### Languages
-
-* Tcl, Python, C, C++, Haskell, Java.
-
-### Likes
-
-* Unix, git, tmux, tig, ack, PostgreSQL, math, functional programming, machine learning.
+* My Erdos number is 4.
