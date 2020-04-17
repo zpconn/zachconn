@@ -8,7 +8,7 @@ The K combinator, introduced by Donal Fellows, can be defined by the following s
 proc K {a b} { set a }
 ```
 
-So it just returns the value of its first argument and ignores the second argument. Of what use could this possibly be? The trick, so to speak, is that command substitution is still applied to the second argument.
+This pops up fairly commonly on the Tcl wiki, and at first glance it's not clear what the point is. It just returns the value of its first argument and ignores the second argument. Of what use could this be? This post contains some ruminations on how to answer this question. ```K``` is mostly about how Tcl performs command substitution and can be used for optimizations in certain situations by expressing side effects without creating temporary variables.
 
 Before illustrating the use of this with examples, I'm going to use a slightly more general form:
 
@@ -16,9 +16,7 @@ Before illustrating the use of this with examples, I'm going to use a slightly m
 proc K {a args} { set a }
 ```
 
-Remember that ```args``` in Tcl has a special meaning: it denotes a list containing all remaining arguments. So this is the K combinator extended to arbitrarily many arguments. I'm going to still call this ```K``` because it is so useful. This extended K combinator just takes any number of arguments (at least one) and returns the value of the first argument.
-
-Now let's dive into the examples. The combinator can be unintuitive at first and it can lead to code which is hard to understand for the uninitiated, so it may not be well-suited for production code. But if understood and appreciated it can provide some nicer forms for common Tcl idioms.
+Remember that ```args``` in Tcl has a special meaning: it denotes a list containing all remaining arguments. So this is the K combinator extended to arbitrarily many arguments. I'm going to still call this ```K``` going forward. This extended K combinator just takes any number of arguments (at least one) and returns the value of the first argument.
 
 Here's a warm-up to get you used to thinking about ```K``` and Tcl substitution. For instance, it can be used for a post-increment operator, which Tcl lacks:
 
@@ -51,9 +49,9 @@ Or we can swap two variables, say ```a``` and ```b```, without any temporary var
 set a [K $b [set b $a]]
 ```
 
-These examples aren't particularly useful or life-changing, but I hope they are training you to understand how ```K``` allows us to tag side effects onto ordinary command invocations in a condensed syntax. Let's look at some more substantial and interesting examples which will use this knowledge.
+These examples aren't particularly useful, but they illustrate how ```K``` allows us to tag side effects onto ordinary command invocations in a condensed syntax.
 
-Suppose we have a stack, represented as a list in Tcl, and we want to implement the pop operation. Pop inspects the top-most value on the stack, returning its value to us, and it then deletes this element from the stack. With ```K```, this sounds like a computation with a side effect:
+Here's another example. Suppose we have a stack, represented as a list in Tcl, and we want to implement the pop operation. Pop inspects the top-most value on the stack, returning its value to us, and it then deletes this element from the stack. With ```K```, this sounds like a computation with a side effect:
 
 ``` tcl
 proc pop {stackName} {
@@ -81,6 +79,6 @@ proc lambda {arg body} { K [set n [info $body 0]] [proc $n $arg1 $body] }
 
 Here the name of the lambda function created is the same as the command in which the lambda is invoked.
 
-In general, ```K``` allows one to tag side effects onto computations in such a way as to sometimes avoid extra allocations or command invocations. As such, it can be useful for optimizing mission-critical code or perhaps for just expressing a computation more cleanly. 
+In general, ```K``` allows one to tag side effects onto computations in such a way as to sometimes avoid extra allocations or command invocations. As such, it can be useful for optimizing mission-critical code.
 
-Do I recommend actually using it? Probably not. But it's nice to understand it when you see it in other code (it pops up fairly often on the Tcl wiki).
+Do I recommend actually using it? Probably not.

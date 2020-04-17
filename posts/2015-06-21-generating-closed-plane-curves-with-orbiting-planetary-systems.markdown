@@ -37,3 +37,5 @@ Alternatively, we can define the \\(n\\)th harmonic, for \\(n \\geq 0\\), via \\
 \\[h_n(t) = r_n e^{2\\pi int} + r_{-n} e^{-2\\pi int}.\\]
 
 The curve is then a sum of harmonics, and each harmonic is not a circular orbit but an elliptical one with semi-major axis \\(\\left|r_n\\right| + \\left|r_{-n}\\right|\\).
+
+An implementation of this approximation in [Elm](https://elm-lang.org/) is available [here](https://github.com/zpconn/elm-fourier).

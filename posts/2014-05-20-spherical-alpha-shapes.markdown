@@ -1,5 +1,5 @@
 ---
-title: 'Data visualization: spherical alpha shapes'
+title: 'Spherical alpha shapes'
 ---
 
 Suppose you are given a set of points on a surface, say a flat sheet of paper or a sphere. Your goal is to find a bounding polygon with the following properties:
@@ -21,6 +21,6 @@ The formal definition of an alpha shape is quite interesting, but we're not goin
 1. Delete any triangles from the triangulation which are "too big," a condition I define in the following very simple way. A triangle is "too big" if any of its edges is longer than α (some people, by convention, might prefer \\(1/\\alpha\\) here).
 2. What results is a triangulation of the alpha shape. We no longer need the interior geometry, so we merge the triangles to obtain just the bounding path.
 
-This is simple enough if our points reside in a plane. It gets even more interesting if our points are on a sphere (say the locations of all worldwide cities). In this case, we need the spherical Delaunay triangulation. A beautiful observation is that this is equivalent to the three-dimensional convex hull of the set of points in 3-space. With this in mind, the only other modification necessary is of course to use the spherical distance metric.
+This is simple enough if our points reside in a plane. It gets even more interesting if our points are on a sphere (say the locations of all worldwide cities). In this case, we need the spherical Delaunay triangulation. A beautiful observation is that this is equivalent to the three-dimensional convex hull of the set of points in 3-space. With this in mind, the only other modification necessary is of course to use the spherical distance metric. 
 
-The following example shows an implementation of alpha shapes using these ideas in sherical geometry using D3.js: [http://bl.ocks.org/zpconn/11387143](http://bl.ocks.org/zpconn/11387143). The final merge step is performed using TopoJSON.
+The algorithm thus derived for computing spherical alpha shapes is the following: (1) compute the spherical Delaunay triangulation of the point set in question by finding its convex hull in 3-space; (2) delete from this triangulation any triangles which are too small according to the above criterion using the parameter \\(\\alpha\\); (3) merge the resulting interior geometry to obtain the final alpha shape.

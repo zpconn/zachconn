@@ -1,10 +1,10 @@
 ---
-title: A Crash Course in Machine Learning
+title: A crash course in machine learning (part I)
 ---
 
-This document is intended to be a fast-paced, whirlwind tour through the essential mathematics underlying modern machine learning. I've been very selective in the topics chosen for discussion, with the aim being to derive material from simpler principles whenever possible. Thus, we begin with some basic information-theoretic concepts and proceed to analyze classical models using them, with no arbitrary selection of loss functions.
+This document is intended to be the first part of a fast-paced, whirlwind tour through the essential mathematics underlying modern machine learning. I've been very selective in the topics chosen for discussion, with the aim being to derive material from simpler principles whenever possible. Thus, we begin with some basic information-theoretic concepts and proceed to analyze classical models using them, with no arbitrary selection of loss functions.
 
-Mathematical prerequisites are modest and neither extreme nor negligible.
+Mathematical prerequisites are modest and neither extreme nor negligible. In this first post, we quickly discover logistic regression from first principles and conclude with a description of (but not a solution to) the numerical optimization problem that it poses.
 
 #### Cross-entropy
 
@@ -90,3 +90,4 @@ The most common choice of \\(g\\) is the **logistic sigmoid** function \\(\\sigm
 
 The resulting model is known as **logistic regression**. As before, we can train the model by selecting the weights vector \\(\\mathbf{w}\\) that minimizes the cross-entropy.
 
+In the cases of both linear and logistic regression, we've so far sidestepped the question of how to select the optimal weights vector. As it happens, in linear regression this optimization problem has a closed-form solution, but the nonlinearity introduced by \\(g\\) in logistic regression means that in general we have to rely on numerical optimization in that case. We conclude this post at this point with this conceptual framework that poses the numerical optimization problem that we will rapidly solve in the next part of the series.
